@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МАОУ "Школа №20 им. Кирилла и Мефодия" | Великий Новгород</title>
+    <!-- Подключение шрифтов Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2b4c7c;
+            --secondary: #567d9a;
+            --accent: #b48c5c;
+            --light: #f4f7fa;
+            --dark: #1f2a3a;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 15px 40px rgba(0,0,0,0.1);
+            --border-radius: 24px;
+            --border-radius-sm: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Шапка */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .school-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text h1 {
+            font-size: 1.7rem;
+            line-height: 1.2;
+        }
+
+        .logo-text h1 span {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            color: #5f6b7a;
+            margin-top: 4px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--dark);
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        /* Герой */
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(135deg, #fff8f0 0%, #e7eef7 100%);
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1 1 400px;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #2d3e50;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-image {
+            flex: 1 1 300px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--accent);
+        }
+
+        /* Секции */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        .section-sub {
+            color: #5f6b7a;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+
+        /* Карточки для фотографий */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .photo-card {
+            background: var(--white);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 220px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 1rem;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .photo-img span {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .photo-caption {
+            padding: 20px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* Изображения из локальных файлов */
+        .place-img { 
+            background-image: url('place.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .name-img { 
+            background-image: url('name.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .best-img { 
+            background-image: url('best.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .knigovorot-img { 
+            background-image: url('knigovorot.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .knigovorot2-img { 
+            background-image: url('knigovorot2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* О школе */
+        .about-block {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .info-item {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .info-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .info-item ul {
+            list-style: none;
+        }
+
+        .info-item li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-item li:before {
+            content: '\f0e0';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .info-item li.phone:before { content: '\f095'; }
+        .info-item li.fax:before { content: '\f1ac'; }
+        .info-item li.address:before { content: '\f3c5'; }
+
+        .stats {
+            display: flex;
+            gap: 40px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Контакты */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item .label {
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Материально-техническое обеспечение */
+        .mto-block {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .platform-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .platform-btn {
+            background: var(--light);
+            border: 2px solid transparent;
+            padding: 20px;
+            border-radius: var(--border-radius-sm);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            width: 100%;
+        }
+
+        .platform-btn:hover {
+            border-color: var(--accent);
+            background: white;
+            transform: scale(1.02);
+        }
+
+        .platform-btn h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .platform-btn ul {
+            list-style: none;
+        }
+
+        .platform-btn li {
+            margin-bottom: 5px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .platform-btn li:before {
+            content: '+';
+            color: #22c55e;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .platform-btn li.minus:before {
+            content: '−';
+            color: #ef4444;
+        }
+
+        .close-modal {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .close-modal:hover {
+            background: var(--secondary);
+        }
+
+        /* Футер */
+        footer {
+            background: var(--dark);
+            color: #cbd5e1;
+            padding: 48px 0 24px;
+            margin-top: 60px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 1rem;
+            color: white;
+        }
+
+        .rights-trigger {
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            border-bottom: none;
+        }
+
+        .rights-trigger:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 800px) {
+            .header-content {
+                flex-direction: column;
+                align-items: start;
+            }
+            .hero-text h2 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-area">
+                <i class="fas fa-scroll school-icon"></i>
+                <div class="logo-text">
+                    <h1>МАОУ "Школа <span>№20</span>"</h1>
+                    <p>имени Кирилла и Мефодия • Великий Новгород</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">О школе</a></li>
+                    <li><a href="#gallery">Фотогалерея</a></li>
+                    <li><a href="#info">Сведения</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h2>Школа просвещения<br>и добра</h2>
+                <p>МАОУ "Школа №20 имени Кирилла и Мефодия" — место, где чтут традиции и создают будущее</p>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-book-open"></i>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="about">
+            <h2 class="section-title">О школе</h2>
+            <div class="about-block">
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">608</div>
+                        <div class="stat-label">Всего детей</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">120</div>
+                        <div class="stat-label">Дошкольное отделение</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">488</div>
+                        <div class="stat-label">Школьники</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">58</div>
+                        <div class="stat-label">Педагогов</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                        <i class="fas fa-calendar-alt" style="color: var(--accent); margin-right: 10px;"></i>
+                        <strong>14 мая 1998 года</strong> — распоряжение об открытии нового учебного заведения в Великом Новгороде было подписано в праздник иконы Божией Матери «Нечаянная Радость».
+                    </p>
+                    <p style="font-size: 1.1rem; font-style: italic;">
+                        Школа получила имена первоучителей словенских — святых равноапостольных Кирилла и Мефодия.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2 class="section-title">Фотогалерея</h2>
+            <p class="section-sub">Жизнь нашей школы в фотографиях</p>
+            
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <div class="photo-img place-img">
+                    </div>
+                    <div class="photo-caption">Здание школы</div>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-img name-img">
+                    </div>
+                    <div class="photo-caption">Табличка с названием школы</div>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-img best-img">
+                    </div>
+                    <div class="photo-caption">Лучшие ученики школы</div>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-img knigovorot-img">
+                    </div>
+                    <div class="photo-caption">Событие "Книговорот"</div>
+                </div>
+                
+                <div class="photo-card">
+                    <div class="photo-img knigovorot2-img">
+                    </div>
+                    <div class="photo-caption">Событие "Книговорот"</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="info">
+            <h2 class="section-title">Сведения об образовательной организации</h2>
+            
+            <div class="mto-block">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">Материально-техническое обеспечение</h3>
+                <p>В дошкольном учреждении МАОУ "Школа № 20 имени Кирилла и Мефодия" согласно п. 4 ст. 32 Федерального закона «Об образовании в Российской Федерации» от 29.12.2012 № 273-ФЗ Учреждение обеспечивает открытость и доступность информации, которая подлежит размещению на официальном сайте в сети Интернет и обновлению в течение тридцати дней со дня внесения соответствующих изменений.</p>
+                <p style="margin-top: 15px;">В соответствии с требованиями Федерального закона «Об образовании в Российской Федерации» от 29.12.2012 № 273-ФЗ сформирован сайт Учреждения, на котором размещаются материалы, представляющие интерес для широкой аудитории. Наличие собственного сайта в сети Интернет предоставляет родителям (законным представителям) возможность оперативного получения информации о нормативной базе Учреждения, образовательной деятельности, сведениях о педагогических работниках, о проводимых мероприятиях, праздниках, развлечениях и др.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Контакты</h2>
+            <p class="section-sub">Свяжитесь с нами удобным для Вас способом</p>
+            
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span class="label">Канцелярия, заместитель директора</span>
+                            <div>8 (8162) 732605</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span class="label">Директор</span>
+                            <div>8 (8162) 775179</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <span class="label">Дошкольное отделение, бухгалтерия</span>
+                            <div>8 (8162) 280076</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-fax"></i>
+                        <div>
+                            <span class="label">Факс</span>
+                            <div>(816) 273-26-05</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <span class="label">Электронная почта</span>
+                            <div>school20km@yandex.ru</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <span class="label">Адрес</span>
+                            <div>Великий Новгород, ул. Софийская, 20</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <span class="label">Официальный сайт</span>
+                            <div>school20km.ru</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    2026 МАОУ "Школа № 20 имени Кирилла и Мефодия". Все <span class="rights-trigger" id="rightsTrigger"><u>права</u></span> защищены
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно выбора платформы -->
+    <div class="modal" id="platformModal">
+        <div class="modal-content">
+            <h3>Выберите платформу</h3>
+            <div class="platform-options">
+                <button class="platform-btn" onclick="window.open('https://gititgit1113.github.io/wixland', '_blank')">
+                    <h4>Wixland</h4>
+                    <ul>
+                        <li>+ Классические игры</li>
+                        <li>+ Порт Flappy Bird</li>
+                        <li class="minus">- Медленное меню</li>
+                        <li class="minus">- Лаги</li>
+                        <li class="minus">- Слишком много анимаций</li>
+                    </ul>
+                </button>
+                
+                <button class="platform-btn" onclick="window.open('https://gititgit1113.github.io/canvas-space', '_blank')">
+                    <h4>Canva's Space</h4>
+                    <ul>
+                        <li>+ Более 15+ игр</li>
+                        <li>+ Присутствуют портативы игр</li>
+                        <li style="list-style: none; padding-left: 25px;">например Minecraft 1.12.2</li>
+                        <li>+ Без реклам</li>
+                        <li>+ Без ожиданий</li>
+                        <li class="minus">- Некоторые игры не проверены</li>
+                    </ul>
+                </button>
+            </div>
+            <button class="close-modal" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        // Модальное окно
+        const modal = document.getElementById('platformModal');
+        const rightsTrigger = document.getElementById('rightsTrigger');
+
+        function openModal() {
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        rightsTrigger.addEventListener('click', openModal);
+
+        // Закрытие по клику вне модального окна
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Плавный скролл для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Подсветка активного пункта меню
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Предотвращение закрытия при клике внутри модального окна
+        document.querySelector('.modal-content').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
